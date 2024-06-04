@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ThemeProvider>
+        <body className={inter.className}>{children}</body>
+      </ThemeProvider>
     </html>
   );
 }
+
+/**
+ * ! though here ThemeProvider is a client component, but layout.js will remain server component
+ */
